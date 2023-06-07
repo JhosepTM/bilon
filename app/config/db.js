@@ -1,12 +1,16 @@
-const express = require('express');
-const { Pool } = require('pg');
-require('dotenv').config();
+import express from "express";
+//const express = require('express');
+import pg from "pg";
+const { Pool } = pg;
+//const { Pool } = require('pg');
+import 'dotenv/config'
+//require('dotenv').config();
 
 const app = express();
 const port = 3000;
 
 // Configuración de la conexión a la base de datos
-const pool = new Pool({
+export const pool = new Pool({
   user: process.env.DB_USER,
    host: process.env.DB_HOST,
   database: process.env.DB_NAME,
@@ -14,4 +18,4 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-module.exports = {pool};
+//module.exports = {pool};
