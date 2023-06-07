@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import { pool } from './app/config/db.js';
 //const { pool } = require('./app/config/db');
 import { routerUp } from "./app/routes/uploads.js";
-const app = express();
+
 const port = process.env.PORT; 
 
 app.get('/api/xd', async (req, res) => {
@@ -28,3 +28,15 @@ app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port}`);
 });
 
+const express = require('express');
+const app = express();
+const routes = require('./app/routes/appRoutes');
+
+app.use(express.json());
+// Asociar las rutas configuradas en routes.js
+app.use('/api', routes);
+
+// Iniciar el servidor
+app.listen(port, () => {
+  console.log(`Servidor corriendo en el puerto ${port}`);
+});
