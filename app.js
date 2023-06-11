@@ -8,10 +8,13 @@ import { pool } from './app/config/db.js';
 import { routerUp } from "./app/routes/uploads.js";
 import { routerApp } from "./app/routes/appRoutes.js";
 
+import cors from "cors";
+
 const port = process.env.PORT; 
 
 const app = express();
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

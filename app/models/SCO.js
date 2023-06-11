@@ -26,11 +26,11 @@ export const SCO = {
   },
 
   // Agregar un nuevo registro
-  async create(historiaPrevia, metadata_id) {
+  async create(title, instruction, historiaPrevia, metadata_id) {
     try {
       const query =
-        'INSERT INTO SCO (historiaPrevia, metadata_id) VALUES ($1, $2) RETURNING *';
-      const values = [historiaPrevia, metadata_id];
+        'INSERT INTO SCO (title, instruction, historiaPrevia, metadata_id) VALUES ($1, $2, $3, $4) RETURNING *';
+      const values = [title, instruction, historiaPrevia, metadata_id];
       const result = await pool.query(query, values); // Utiliza db.pool.query en lugar de pool.query
       return result.rows[0];
     } catch (error) {

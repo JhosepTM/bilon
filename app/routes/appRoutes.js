@@ -2,7 +2,7 @@ import express from "express";
 import { registerSCO, getAllSCO, registerSCOAsset, registerCard, getSCO, deleteSCO, deleteCard } from '../controllers/appController.js';
 
 export const routerApp = express.Router();
-//Ruta para registrar un SCO, necesita { historiaPrevia, formatArch }
+//Ruta para registrar un SCO, necesita { title, instruction, historiaPrevia }
 routerApp.post('/register/sco', registerSCO);
 //Ruta para registrar un Assets al SCO, necesita { sco_id, asset_id }
 routerApp.post('/register/SCOAsset', registerSCOAsset);

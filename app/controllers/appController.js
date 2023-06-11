@@ -17,10 +17,11 @@ export const registerMetadata = async (req, res) => {
 
 export const registerSCO = async (req, res) => {
     try {
-        const { historiaPrevia, formatArch } = req.body;
+        const { title, instruction, historiaPrevia } = req.body;
+        const formatArch = "SCO";
         const newMetadata = await Metadata.create(formatArch);
         const metadata_id = newMetadata['id'];
-        const newSCO = await SCO.create(historiaPrevia,metadata_id);
+        const newSCO = await SCO.create(title, instruction, historiaPrevia, metadata_id);
 
         res.status(200).json({message: 'SCO Regsitrado', SCO: newSCO});
     } catch (error) {
