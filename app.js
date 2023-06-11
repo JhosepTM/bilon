@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import { pool } from './app/config/db.js';
 //const { pool } = require('./app/config/db');
 import { routerUp } from "./app/routes/uploads.js";
+import { routerApp } from "./app/routes/appRoutes.js";
 
 const port = process.env.PORT; 
 
@@ -14,6 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/api', routerApp)
 app.use('/api', routerUp);
  
 app.listen(port, () => {
