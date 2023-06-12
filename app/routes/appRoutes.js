@@ -11,7 +11,7 @@ routerApp.post('/register/card', registerCard);
 //Ruta para obtener la lista de SCO cada uno con sus Cards, no necesita nada
 routerApp.get('/get/all_sco', getAllSCO);
 //Ruta para obtener un SCO con sus Cards, necesita { sco_id }
-routerApp.get('/get/sco', getSCO);
+routerApp.get('/get/sco/:sco_id', getSCO);
 //Ruta para eliminar un SCO con sus Cards, necesita { sco_id }
 routerApp.delete('/delete/sco', deleteSCO);
 //Ruta para eliminar un target de un SCO, necesita { card_id }

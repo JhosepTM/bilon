@@ -87,15 +87,15 @@ export const getAllSCO = async (req, res) => {
 
 export const getSCO = async (req, res) => {
     try {
-        const { sco_id } = req.body;
+        const sco_id = req.params.sco_id;
         const sco = await SCO.getById(sco_id);
         const cards = await Card.getAllByIdSCO(sco_id);
-        const res = {
+        const resSCO = {
             ...sco,
             "cards": cards
         }    
         if (sco) {
-            res.status(200).json(res);
+            res.status(200).json(resSCO);
         } else {
             res.status(200).json({message: 'Registro no encontrado'});
         }
