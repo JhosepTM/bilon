@@ -1,4 +1,5 @@
 import { Card } from '../models/Card.js';
+import { Assets } from '../models/Assets.js';
 import { Metadata } from '../models/Metadata.js';
 import { SCO } from '../models/SCO.js';
 import { SCOAssets } from '../models/SCOAsssets.js';
@@ -43,9 +44,11 @@ export const registerSCOAsset = async (req, res) => {
 export const registerCard = async (req, res) => {
     try {
         const formatArch = "Card";
-        const { sco_id, asset_id, title, track, posOrden, description } = req.body;
+        const { sco_id, asset_name, title, track, posOrden, description } = req.body;
         const newMetadata = await Metadata.create(formatArch);
         const metadata_id = newMetadata['id'];
+        const asset = await Assets.getIdByFileName(asset_name);
+        const asset_id = asset['id'];
         const newCard= await Card.create(title, track, description, posOrden, metadata_id, sco_id, asset_id);
 
         res.status(200).json({message: 'Card Regsitrado', Card: newCard});
