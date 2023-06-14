@@ -52,7 +52,7 @@ export const uploadFile = async (req, res, next) => {
         
         await client.query("COMMIT");
 
-        res.status(200).send({message: `File uploaded successfully, idMetaData: ${idMD}, idAsset: ${idAs}}`});
+        res.status(200).send({message: `File uploaded successfully, idMetaData: ${idMD}, idAsset: ${idAs}}`, id: idAs});
     }catch(e){
         console.log("Error al insertar registro", e);
         await client.query("ROLLBACK");
@@ -67,7 +67,7 @@ export const fileID = async (req, res, next) => {
     const client = await pool.connect();
     try{
         const query = 'SELECT * FROM assets WHERE id = $1';
-        const values = [req.body.id];
+        const values = [req.params.id];
         const result = await client.query(query, values);
         if(result.rows.length > 0){
             const filePath = path.join(CURRENT_DIR, "../uploads", result.rows[0].path);
@@ -134,7 +134,7 @@ export const filePath = async (req, res, next) => {
 }
 
 export const deleteFile = async (req, res, next) => {
-    const id = req.body.id;
+    const id = req.params.id;
     const client = await pool.connect();
     try {
         await client.query("BEGIN");

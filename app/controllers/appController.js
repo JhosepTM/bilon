@@ -107,6 +107,21 @@ export const getSCO = async (req, res) => {
     }
 };
 
+export const getAssetsIDs = async (req, res) => {
+    try {
+        
+        const ids = await Assets.getAssetIds();
+
+        if (ids) {
+            res.status(200).json(ids);
+        } else {
+            res.status(200).json({message: 'Registro no encontrado'});
+        }
+    } catch (error) {
+        res.status(500).json({error: 'Error al obtener la lista de id de los assets'});
+    }
+};
+
 export const deleteSCO = async (req, res) => {
     try {
         const { sco_id } = req.body;

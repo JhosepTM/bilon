@@ -1,5 +1,5 @@
 import express from "express";
-import { registerSCO, getAllSCO, registerSCOAsset, registerCard, getSCO, deleteSCO, deleteCard } from '../controllers/appController.js';
+import { registerSCO, getAllSCO, registerSCOAsset, registerCard, getSCO, deleteSCO, deleteCard, getAssetsIDs } from '../controllers/appController.js';
 
 export const routerApp = express.Router();
 //Ruta para registrar un SCO, necesita { title, instruction, historiaPrevia }
@@ -16,3 +16,5 @@ routerApp.get('/get/sco/:sco_id', getSCO);
 routerApp.delete('/delete/sco', deleteSCO);
 //Ruta para eliminar un target de un SCO, necesita { card_id }
 routerApp.delete('/delete/card', deleteCard);
+
+routerApp.get('/get/assets_id', getAssetsIDs);

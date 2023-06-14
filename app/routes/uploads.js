@@ -5,8 +5,8 @@ export const routerUp = express.Router();
 
 routerUp.post("/upload", multerUpload.single("file"), uploadFile);
 routerUp.use("/public", publicUp);
-routerUp.get("/file", fileID);
+routerUp.get("/file/:id", fileID);
 routerUp.get("/filesNames", allFiles);
 routerUp.get("/filePath", filePath);
-routerUp.delete("/deleteFile", deleteFile);
+routerUp.delete("/deleteFile/:id", deleteFile);
 

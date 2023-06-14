@@ -14,4 +14,14 @@ export const Assets = {
     }
   },
 
+  async getAssetIds() {
+    try {
+      const query = 'SELECT id FROM assets';
+      const result = await pool.query(query); // Utiliza db.pool.query en lugar de pool.query
+      return result.rows;
+    } catch (error) {
+      throw new Error('Error al obtener el registro de asset');
+    }
+  },
+
 };
