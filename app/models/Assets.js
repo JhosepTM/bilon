@@ -16,7 +16,7 @@ export const Assets = {
 
   async getAssetIds() {
     try {
-      const query = 'SELECT id FROM assets';
+      const query = 'SELECT id, path FROM assets';
       const result = await pool.query(query); // Utiliza db.pool.query en lugar de pool.query
       return result.rows;
     } catch (error) {
